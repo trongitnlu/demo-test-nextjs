@@ -16,11 +16,8 @@ spec:
     spec:
       containers:
         - name: demo-app
-          image: vetgo:5000/test-nextjs:latest
+          image: vetgo:5000/vetgo/test-nextjs:latest
           imagePullPolicy: Always
-          volumeMounts:
-            - name: demo-app-vol
-              mountPath: /data
 ---
 apiVersion: v1
 kind: Service
