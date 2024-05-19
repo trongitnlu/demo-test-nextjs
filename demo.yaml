@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app
+  labels:
+    app: demo-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        - name: demo-app
+          image: vetgo:5000/test-nextjs:latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: demo-app-vol
+              mountPath: /data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-app-lb
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 5601
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: demo-app
