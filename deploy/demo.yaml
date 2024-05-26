@@ -16,8 +16,10 @@ spec:
     spec:
       containers:
         - name: demo-app
-          image: docker-registry.chop.dev:5000/vetgo/test-nextjs:latest
+          image: registry.vetgo.vn:5000/test-nextjs-v2
           imagePullPolicy: Always
+      imagePullSecrets:
+        - name: regcred
 ---
 apiVersion: v1
 kind: Service
